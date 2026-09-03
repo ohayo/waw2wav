@@ -139,12 +139,12 @@ const GAME_CODES = [
 
 if (args.length < 2) {
   console.log("---- M(ASS) WAW2WAV USAGE -----");
-  console.log("waw2wav.js <PATH_TO_WAW_FILES> <GAME_CODE>");
+  console.log("mwaw2wav.js <PATH_TO_WAW_FILES> <GAME_CODE>");
   console.log("GAME CODES:");
   console.log("mf/MF - MARBLE FEVER/MARBLE CARNIVAL");
   console.log("If you provide a game code which is non existent, the script will assume you meant to load from a custom (4096 bytes) key.bin file. Do not do this unless you know what you're doing.")
   console.log("------------------------");
-  console.log("Output files will be the same path as the working directory but with <PATH_TO_WAW_FILES>_decrypted on the end instead.");
+  console.log("Output files will be the same path as the working directory but in a new folder named <PATH_TO_WAW_FILES> but with \"_decrypted\" added on the end instead.");
   return;
 }
 
