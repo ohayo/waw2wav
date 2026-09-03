@@ -52,6 +52,7 @@ function processWavFile(inputFile, outputFile, lookupTable) {
     throw new Error('Invalid WAVE file header.'); 
   }
 
+  let lookupTableBytes = fs.readFileSync(lookupTable);
   let offset = 12;
   let datxOffset = -1;
   let datxSize = 0;
@@ -109,7 +110,7 @@ function processWavFile(inputFile, outputFile, lookupTable) {
 
   let payloadStartOffset = datxOffset + 8;
   let encryptedPayload = outputBuffer.subarray(payloadStartOffset, payloadStartOffset + datxSize);
-  let decryptedPayload = decryptDatxChunk(encryptedPayload, payloadStartOffset, fs.readFileSync(lookupTable));
+  let decryptedPayload = decryptDatxChunk(encryptedPayload, payloadStartOffset, lookupTableBytes);
 
   decryptedPayload.copy(outputBuffer, payloadStartOffset);
 

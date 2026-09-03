@@ -42,6 +42,8 @@ function processWavFiles(inputDir, outputDir, lookupTable) {
     fs.mkdirSync(outputDir);
   }
 
+  let lookupTableBytes = fs.readFileSync(lookupTable);
+
   for(var inputFileName of fs.readdirSync(inputDir)) {
       if (!inputFileName.endsWith(".waw")) {
         continue;
@@ -119,7 +121,7 @@ function processWavFiles(inputDir, outputDir, lookupTable) {
 
       let payloadStartOffset = datxOffset + 8;
       let encryptedPayload = outputBuffer.subarray(payloadStartOffset, payloadStartOffset + datxSize);
-      let decryptedPayload = decryptDatxChunk(encryptedPayload, payloadStartOffset, fs.readFileSync(lookupTable));
+      let decryptedPayload = decryptDatxChunk(encryptedPayload, payloadStartOffset, lookupTableBytes);
 
       decryptedPayload.copy(outputBuffer, payloadStartOffset);
 
